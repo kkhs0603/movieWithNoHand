@@ -10,6 +10,8 @@ target 'movieWithNoHand' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
+  pod 'react-native-voice', :path => '../node_modules/react-native-voice'
+
   target 'movieWithNoHandTests' do
     inherit! :complete
     # Pods for testing

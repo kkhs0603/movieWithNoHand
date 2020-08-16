@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import VoiceNative from './src/VoiceNative';
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,9 +19,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+const App = () => {
   const playerRef = useRef(null);
+  //Voice.destroy().then(Voice.removeAllListeners);
   const [playing, setPlaying] = useState(false);
+  const voiceControl = (value) => {
+    console.log('p',value)
+    if(value.includes('スタート')){
+      setPlaying(true);
+    }
+    if(value.includes('ストップ')){
+      setPlaying(false);
+    }
+  }
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -34,10 +45,10 @@ const App: () => React$Node = () => {
             width={400}
             videoId={'x8VYWazR5mE'}
             play={playing}
-            onChangeState={event => console.log(event)}
-            onReady={() => console.log('ready')}
-            onError={e => console.log(e)}
-            onPlaybackQualityChange={q => console.log(q)}
+            // onChangeState={event => console.log(event)}
+            // onReady={() => console.log('ready')}
+            // onError={e => console.log(e)}
+            // onPlaybackQualityChange={q => console.log(q)}
             volume={10}
             playbackRate={1}
             initialPlayerParams={{
@@ -45,9 +56,10 @@ const App: () => React$Node = () => {
               showClosedCaptions: true
             }}
           />
-          <Button onPress={()=>{setPlaying(!playing)}}
+          <Button onPress={()=>{}}
             title="test"
             color="#841584"/>
+          <VoiceNative control={voiceControl}/>
         </ScrollView>
       </SafeAreaView>
     </>
