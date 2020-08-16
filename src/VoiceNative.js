@@ -24,6 +24,7 @@ class VoiceNative extends React.Component {
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onError = this.onError.bind(this);
+    Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
   }
 
   componentWillUnmount() {
@@ -33,9 +34,15 @@ class VoiceNative extends React.Component {
     //this._startRecognition.bind(this);
   }
 
+  onSpeechEnd(){
+    console.log('end');
+    Voice.destroy().then(Voice.removeAllListeners);
+    this._startRecognition();
+  }
+
   onError(e) {
     console.log('_onSpeechError');
-    console.log(event.error);
+    console.log(e.error);
   }
 
   onSpeechStart(e) {
