@@ -36,7 +36,8 @@ class VoiceNative extends React.Component {
 
   onSpeechEnd(){
     console.log('end');
-    Voice.destroy().then(Voice.removeAllListeners);
+    Voice.stop();
+    //Voice.destroy().then(Voice.removeAllListeners);
     this._startRecognition();
   }
 

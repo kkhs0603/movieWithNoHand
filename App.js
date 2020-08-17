@@ -25,6 +25,7 @@ const App = () => {
   const [playing, setPlaying] = useState(false);
   const voiceControl = (value) => {
     console.log('p',value)
+    if(value == null) return;
     if(value.includes('スタート')){
       setPlaying(true);
     }
